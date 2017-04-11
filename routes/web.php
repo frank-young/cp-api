@@ -12,5 +12,13 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->version();
+    return config('jwt');
+});
+
+$app->group(['prefix' => 'api/v1.0.0'], function($app)
+{
+    $app->post('info','InfoController@create');
+    $app->put('info/{id}','InfoController@update');
+    $app->delete('info/{id}','InfoController@delete');
+    $app->get('info','InfoController@index');
 });

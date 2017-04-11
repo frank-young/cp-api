@@ -1,0 +1,17 @@
+{
+    "name": "cp/jwt-auth",
+    "description": "JSON Web Token Authentication for  Lumen",
+    "authors": [
+        {
+            "name": "cp",
+            "email": "yangjunalns@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Cp\\JWT\\": "packages/cp/jwt/src/"
+        }
+    }
+}
