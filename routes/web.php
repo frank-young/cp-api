@@ -17,8 +17,17 @@ $app->get('/', function () use ($app) {
 
 $app->group(['prefix' => 'api/v1.0.0'], function($app)
 {
+    /*
+     * 微信登录
+     */
+    $app->get('login','Miniapp\WxuserController@login');
+
+    /*
+     * 用户信息填写
+     */
     $app->post('info','InfoController@create');
     $app->put('info/{id}','InfoController@update');
     $app->delete('info/{id}','InfoController@delete');
     $app->get('info','InfoController@index');
+
 });
