@@ -9,8 +9,19 @@ class WxuserController extends Controller
 {
     public function login(Request $request)
     {
-        // $data = $this->jscode2session($request->code);
-        $data = $this->create_guid();
+        $wx_session = $this->jscode2session($request->code);
+        $key_session = $this->create_guid();
+
+        $request->session()->put($key_session, $wx_session->openid.$wx_session->session_key);
+        // session([$key_session=>$wx_session->openid.$wx_session->session_key]);
+        // session(['key' => 'value']);
+
+        $data = [
+          "errcode" => 10000,
+          "success" => true,
+          "bizContent" => $key_session
+        ];
+
         return response()->json($data);
         // oCKTq0HbLLgM6fpEqIncxGrESaek
         // FADr0CUYMHfBkLlee/0LNw==
