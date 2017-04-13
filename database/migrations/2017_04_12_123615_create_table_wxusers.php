@@ -15,14 +15,13 @@ class CreateTableWxusers extends Migration
     {
       Schema::create('wxusers', function (Blueprint $table) {
         $table->increments('id');
-        $table->string('openid');
-        $table->string('session_key');
-        $table->string('nickName')->nullable();
-        $table->string('avatarUrl')->nullable();
-        $table->integer('gender')->nullable();
-        $table->string('province')->nullable();
-        $table->string('city')->nullable();
-        $table->string('country')->nullable();
+        $table->string('openid')->comment('微信端openid');
+        $table->string('nickName')->nullable()->comment('用户昵称');
+        $table->string('avatarUrl')->nullable()->comment('用户头像');
+        $table->integer('gender')->nullable()->comment('用户性别');
+        $table->string('province')->nullable()->comment('用户省份');
+        $table->string('city')->nullable()->comment('用户城市');
+        $table->string('country')->nullable()->comment('用户国家');
       });
     }
 

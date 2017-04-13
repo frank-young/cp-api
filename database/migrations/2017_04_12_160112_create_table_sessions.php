@@ -13,10 +13,11 @@ class CreateTableSessions extends Migration
      */
     public function up()
     {
-      Schema::create('sessions', function ($table) {
-        $table->string('id')->unique();
-        $table->text('payload');
-        $table->integer('last_activity');
+      Schema::create('sessions', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('openid')->comment('用户openid');
+        $table->string('session_key')->comment('微信端session_key');
+        $table->string('private_session_key')->comment('服务端session_key');
       });
     }
 
@@ -27,6 +28,6 @@ class CreateTableSessions extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('sessions');
     }
 }
