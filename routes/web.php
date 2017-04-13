@@ -15,12 +15,13 @@ $app->get('/', function () use ($app) {
     return config('jwt');
 });
 
-$app->group(['prefix' => 'api/v1.0.0'], function($app)
+$app->group(['prefix' => 'api/wx'], function($app)
 {
     /*
-     * 微信登录
+     * 微信小程序登录，用户信息验证
      */
     $app->get('login','Miniapp\WxuserController@login');
+    $app->post('getuserinfo','Miniapp\WxuserController@getuserinfo');
 
     /*
      * 用户信息填写
