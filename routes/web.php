@@ -15,14 +15,14 @@ $app->get('/', function () use ($app) {
     return config('jwt');
 });
 
-$app->group(['prefix' => 'api/wx'], function($app)
+$app->group(['prefix' => 'api/wx','namespace' => 'Miniapp'], function($app)
 {
     /*
      * 微信小程序登录，用户信息验证
      */
-    $app->post('login','Miniapp\WxuserController@login');
-    $app->post('getuserinfo','Miniapp\WxuserController@getuserinfo');
-    $app->post('getopenid','Miniapp\WxuserController@getopenid');
+    $app->post('login','WxuserController@login');
+    $app->post('getuserinfo','WxuserController@getuserinfo');
+    $app->post('getopenid','WxuserController@getopenid');
 
     /*
      * 用户信息填写
