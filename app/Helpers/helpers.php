@@ -86,3 +86,36 @@ function returnCode($success, $msg, $bizContent)
   }
   return $res;
 }
+
+/*
+ * 获取五大人格每个属性的值
+ */
+function getBigFiveSum($questions_data)
+{
+  $extraversion = 0;
+  $agreeableness = 0;
+  $conscientiousness = 0;
+  $neuroticism = 0;
+  $openness = 0;
+
+  foreach ($questions_data as $key => $value) {
+    if ($key == 1 || $key == 6 || $key == 11 || $key == 16 || $key == 21 || $key == 26 || $key == 31 || $key == 36) {
+      $extraversion += $value;
+    } else if($key == 2 || $key == 7 || $key == 12 || $key == 17 || $key == 22 || $key == 27 || $key == 32 || $key == 37 || $key == 42) {
+      $agreeableness += $value;
+    } else if($key == 3 || $key == 8 || $key == 13 || $key == 18 || $key == 23 || $key == 28 || $key == 33 || $key == 38 || $key == 43) {
+      $conscientiousness += $value;
+    } else if($key == 4 || $key == 9 || $key == 14 || $key == 19 || $key == 24 || $key == 29 || $key == 34 || $key == 39) {
+      $neuroticism += $value;
+    } else if($key == 5 || $key == 10 || $key == 15 || $key == 20 || $key == 25 || $key == 30 || $key == 35 || $key == 40 || $key == 41 || $key == 44) {
+      $openness += $value;
+    }
+  }
+  return array(
+    'extraversion' => $extraversion,
+    'agreeableness' => $agreeableness,
+    'conscientiousness' => $conscientiousness,
+    'neuroticism' => $neuroticism,
+    'openness' => $openness
+  );
+}

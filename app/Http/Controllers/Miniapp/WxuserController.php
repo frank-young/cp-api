@@ -8,8 +8,11 @@ use App\Http\Controllers\Controller;
 
 class WxuserController extends Controller
 {
-    private $appId = 'wx1c426b7c3311c97d';
-    private $appSecret = '3fc1637131d8f9941e85597daeb55e48';
+    // private $appId = 'wx1c426b7c3311c97d';
+    // private $appSecret = '3fc1637131d8f9941e85597daeb55e48';
+
+    private $appId = 'wx96f1071d5cdc6142';
+    private $appSecret = '955c76a5eaed60ed945da36f435c8e38';
 
     // login 和 getuserinfo 有相同的地方，为了后期的维护，还是选择了分开来写这两个部分
     public function login(Request $request)
