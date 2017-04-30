@@ -21,6 +21,7 @@ class InfoController extends Controller
 
         $info = Info::create($request->all());
         $info->openid = $session->openid;
+        $info->term = 0;
         $info->save();
 
         $question = new Question;
@@ -28,7 +29,10 @@ class InfoController extends Controller
 
         $getBigFiveSum = getBigFiveSum($questions_data);  // 函数放入了 helpers.php
 
+        $question->openid = $info->term;
         $question->openid = $info->openid;
+        $question->name = $request->input('name');
+        $question->sex = $request->input('sex');
         $question->extraversion = $getBigFiveSum['extraversion'];
         $question->agreeableness = $getBigFiveSum['agreeableness'];
         $question->conscientiousness = $getBigFiveSum['conscientiousness'];

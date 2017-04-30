@@ -15,6 +15,7 @@ class CreateTableInfos extends Migration
     {
       Schema::create('infos', function (Blueprint $table) {
         $table->increments('id');
+        $table->integer('term')->comment('第几期匹配');
         $table->string('openid')->comment('openid');
         $table->string('session_key')->comment('session_key');
         $table->string('name')->comment('姓名');
