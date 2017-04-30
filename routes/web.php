@@ -35,7 +35,7 @@ $app->group(['prefix' => 'api/wx','namespace' => 'Miniapp'], function($app)
     /*
      * 匹配查询
      */
-    // $app->get('evaluation/classify','EvaluationController@classify');
+    $app->get('evaluation/classify','EvaluationController@classify');
     $app->get('evaluation/match','EvaluationController@match');
 
 });

@@ -2,7 +2,9 @@
 namespace App\Http\Controllers\Miniapp;
 
 use App\Models\Info;
+use App\Models\Infoterm;
 use App\Models\Question;
+use App\Models\Questionterm;
 use App\Models\Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,26 +22,32 @@ class InfoController extends Controller
         $session = Session::where(['private_session_key'=>$request->input('session_key')])->first();
 
         $info = Info::create($request->all());
-        $info->openid = $session->openid;
-        $info->term = 0;
+        $infoterm = Infoterm::create($request->all());  // 储存单期的用户信息
+
+        $infoterm->openid = $info->openid = $session->openid;
+        $infoterm->term = $info->term = 0;
         $info->save();
+        $infoterm->save();
 
         $question = new Question;
+        $questionterm = new Questionterm; // 储存单期的用户问卷值
         $questions_data = $request->questions;
 
-        $getBigFiveSum = getBigFiveSum($questions_data);  // 函数放入了 helpers.php
+        $getBigFiveSum = getBigFiveSum($questions_data);  // 获取big five的5个计算值，函数放入了 helpers.php
 
-        $question->openid = $info->term;
-        $question->openid = $info->openid;
-        $question->name = $request->input('name');
-        $question->sex = $request->input('sex');
-        $question->extraversion = $getBigFiveSum['extraversion'];
-        $question->agreeableness = $getBigFiveSum['agreeableness'];
-        $question->conscientiousness = $getBigFiveSum['conscientiousness'];
-        $question->neuroticism = $getBigFiveSum['neuroticism'];
-        $question->openness = $getBigFiveSum['openness'];
-        $question->question_score_json = json_encode($questions_data);
+        $questionterm->term = $question->term = $info->term;
+        $questionterm->openid = $question->openid = $info->openid;
+        $questionterm->name = $question->name = $request->input('name');
+        $questionterm->sex = $question->sex = $request->input('sex');
+        $questionterm->extraversion = $question->extraversion = $getBigFiveSum['extraversion'];
+        $questionterm->agreeableness = $question->agreeableness = $getBigFiveSum['agreeableness'];
+        $questionterm->conscientiousness = $question->conscientiousness = $getBigFiveSum['conscientiousness'];
+        $questionterm->neuroticism = $question->neuroticism = $getBigFiveSum['neuroticism'];
+        $questionterm->openness = $question->openness = $getBigFiveSum['openness'];
+        $questionterm->question_score_json = $question->question_score_json = json_encode($questions_data);
+
         $question->save();
+        $questionterm->save();
 
         $res = returnCode(true,'成功','success');
         return response()->json($res);
