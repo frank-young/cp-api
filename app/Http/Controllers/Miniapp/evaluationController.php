@@ -18,36 +18,18 @@ class EvaluationController extends Controller
     {
         Girl::clearData();
         Boy::clearData();
-
-        Questionterm::chunk(200, function ($questionterms) {
-          foreach ($questionterms as $questionterm) {
-            if ($questionterm->sex == 0) {
-              Boy::addData($questionterm);
-            } else {
-              Girl::addData($questionterm);
-            }
-          }
-        });
+        Questionterm::addData();
 
         $res = returnCode(true,'分类成功','success');
         return response()->json($res);
     }
     public function match()
     {
-      Girl::clearData();
+      Girl::clearData();  // 清空暂时存放男女分类数据表
       Boy::clearData();
+      Questionterm::addData();  // 添加进入本期男女分类表
 
-      Questionterm::chunk(200, function ($questionterms) {
-        foreach ($questionterms as $questionterm) {
-          if ($questionterm->sex == 0) {
-            Boy::addData($questionterm);
-          } else {
-            Girl::addData($questionterm);
-          }
-        }
-      });
-
-      Matchterm::clearData();
+      Matchterm::clearData(); // 清空本期匹配数据
 
       $girls = Girl::all();
 
