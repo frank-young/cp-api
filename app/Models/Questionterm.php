@@ -14,6 +14,14 @@ class Questionterm extends Model
     ];
     public $timestamps = false;
 
+    public static function clearData() {
+      self::chunk(200, function ($datas) {
+        foreach ($datas as $data) {
+          self::find($data->id)->delete();
+        }
+      });
+    }
+    
     public static function addData() {
       self::chunk(200, function ($datas) {
         foreach ($datas as $data) {
