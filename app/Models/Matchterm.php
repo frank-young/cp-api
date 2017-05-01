@@ -14,4 +14,19 @@ class Matchterm extends Model
          }
        });
      }
+
+     public static function addData($data) {
+       $matchterm = new Matchterm; // 整体匹配表
+
+       $matchterm->term = $data->term;
+       $matchterm->openid = $data->openid;
+       $matchterm->name = $data->name;
+       $matchterm->sex = $data->sex;
+       $matchterm->match_openid = $data->match_openid;
+       $matchterm->match_name = $data->match_name;
+       $matchterm->match_sex = $data->match_sex;
+       $matchterm->offset = $data->offset;
+
+       $matchterm->save();
+     }
 }

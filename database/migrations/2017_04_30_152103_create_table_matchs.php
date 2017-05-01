@@ -22,6 +22,7 @@ class CreateTableMatchs extends Migration
         $table->string('match_openid')->comment('匹配用户的openid');
         $table->string('match_name')->comment('匹配用户的姓名');
         $table->integer('match_sex')->comment('匹配用户的性别');
+        $table->float('offset')->comment('匹配度，存储的是差值');
       });
     }
 
