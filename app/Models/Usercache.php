@@ -6,7 +6,7 @@ use App\Models\Girl;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Questionterm extends Model
+class Usercache extends Model
 {
     protected $fillable = [
       'name',
@@ -37,8 +37,7 @@ class Questionterm extends Model
 
     public static function addAll(Array $data)
     {
-        $res = DB::table('questionterms')->insert($data);
+        $res = DB::table('usercaches')->insert($data);
         return $res;
     }
-
 }

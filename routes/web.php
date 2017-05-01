@@ -33,11 +33,16 @@ $app->group(['prefix' => 'api/wx','namespace' => 'Miniapp'], function($app)
     $app->get('info','InfoController@index');
 
     /*
-     * 匹配查询
+     * 匹配算法，需要加上超级权限
      */
     $app->get('evaluation/classify','EvaluationController@classify');
-    $app->get('evaluation/match/girl','EvaluationController@matchGirl');
-    $app->get('evaluation/match/boy','EvaluationController@matchBoy');
+    $app->get('evaluation/match/move','EvaluationController@matchMove');
+    $app->get('evaluation/match/city','EvaluationController@matchCity');
     $app->get('evaluation/match','EvaluationController@match');
+
+    /*
+     * 用户匹配查询
+     */
+    $app->post('match','MatchController@index');
 
 });

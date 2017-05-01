@@ -30,11 +30,11 @@ class Girl extends Model
      }
 
      public static function matchingAlgorithm() {
-       $girls = Girl::all();
+       $girls = Girl::cursor();
        foreach ($girls as $key => $value) {
          $match_arr = array();
          $match_data_arr = array();
-         $boys = Boy::all();
+         $boys = Boy::cursor();
 
          foreach ($boys as $k => $v) {
              $extraversion_diff = ($value->extraversion - $v->extraversion);

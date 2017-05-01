@@ -37,6 +37,8 @@ class InfoController extends Controller
 
         $questionterm->term = $question->term = $info->term;
         $questionterm->openid = $question->openid = $info->openid;
+        $questionterm->city = $question->city = $info->city;
+        $questionterm->area_matching = $question->area_matching = $info->area_matching;
         $questionterm->name = $question->name = $request->input('name');
         $questionterm->sex = $question->sex = $request->input('sex');
         $questionterm->extraversion = $question->extraversion = $getBigFiveSum['extraversion'];

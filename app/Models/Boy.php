@@ -31,11 +31,11 @@ class Boy extends Model
      }
 
      public static function matchingAlgorithm() {
-       $boys = Boy::all();
+       $boys = Boy::cursor();
        foreach ($boys as $key => $value) {
          $match_arr = array();
          $match_data_arr = array();
-         $girls = Girl::all();
+         $girls = Girl::cursor();
          foreach ($girls as $k => $v) {
              $extraversion_diff = ($value->extraversion - $v->extraversion);
              $agreeableness_diff = ($value->agreeableness - $v->agreeableness);
