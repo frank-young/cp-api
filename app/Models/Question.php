@@ -10,5 +10,23 @@ class Question extends Model
       'sex',
       'questions'
     ];
-     public $timestamps = false;
+    public $timestamps = false;
+
+    public static function dataMigrate() {
+      $infos = self::where(['term'=>0])->get([
+        'term',
+        'openid',
+        'name',
+        'sex',
+        'city',
+        'extraversion',
+        'agreeableness',
+        'conscientiousness',
+        'neuroticism',
+        'openness',
+        'question_score_json',
+        'area_matching'
+      ])->toArray();
+      return $infos;
+    }
 }

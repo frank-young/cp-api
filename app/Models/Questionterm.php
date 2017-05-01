@@ -41,4 +41,20 @@ class Questionterm extends Model
         return $res;
     }
 
+    public static function cityMatch($city)
+    {
+      $infos = self::where(['city'=>$city])->get([
+        'term',
+        'openid',
+        'name',
+        'sex',
+        'city',
+        'extraversion',
+        'agreeableness',
+        'conscientiousness',
+        'neuroticism',
+        'openness'
+      ])->toArray();
+      return $infos;
+    }
 }
