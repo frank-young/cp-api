@@ -112,6 +112,21 @@ class EvaluationController extends Controller
           }
         }
       }
+      /*
+       * 查询添加房间号和个人匹配号
+       */
+      $GLOBALS["room_num"] = 1;
+      Matchterm::chunk(80,function($datas){
+          $self_num = 1;
+          foreach($datas as $data){
+              $match = Matchterm::where(['id'=>$data->id])->first();
+              $match->self_num = $self_num;
+              $match->room_num = $GLOBALS["room_num"];
+              $match->save();
+              $self_num += .499999; // 两人一组，每次增加.499999，数据库会自动取整，保证男女匹配号一致
+          }
+          $GLOBALS["room_num"]++;
+      });
 
       $end_time=microtime(true);   // 计时结束
       $total_time = number_format($end_time - $start_time, 2);
@@ -155,31 +170,19 @@ class EvaluationController extends Controller
           }
         }
       }
-      $end_time=microtime(true);
 
+      $end_time=microtime(true);
       $total_time = number_format($end_time - $start_time, 2);
 
       $res = returnCode(true,'匹配成功',['time' => $total_time.'秒']);
       return response()->json($res);
     }
 
+    /*
+     * 查询添加房间号和个人匹配号
+     */
     public function updateNum()
     {
-      /*
-       * 查询添加房间号和个人匹配号
-       */
-      // Matchterm::chunk(5,function($datas){
-      //     $room_num = 1;
-      //     foreach($datas as $data){
-      //         $match = Matchterm::where(['id'=>$data->id])->first();
-      //         $match->room_num = $room_num;
-      //         $match->save();
-      //         echo $room_num;
-      //         echo '<br><br>';
-      //         $room_num ++;
-      //     }
-      // });
-
       $GLOBALS["room_num"] = 1;
       Matchterm::chunk(80,function($datas){
           $self_num = 1;
@@ -188,8 +191,6 @@ class EvaluationController extends Controller
               $match->self_num = $self_num;
               $match->room_num = $GLOBALS["room_num"];
               $match->save();
-              echo $self_num;
-              echo '<br><br>';
               $self_num += .499999; // 两人一组，每次增加.499999，数据库会自动取整，保证男女匹配号一致
           }
           $GLOBALS["room_num"]++;
