@@ -20,6 +20,8 @@ class MatchController extends Controller
         $offset = $match->first()->offset;
         $info = Infoterm::where(['openid'=>$match_openid])->first();
         $info->offset = $offset;
+        $info->room_num = $match->first()->room_num;
+        $info->self_num = $match->first()->self_num;
         $res = returnCode(true,'查询成功',$info);
       }
 

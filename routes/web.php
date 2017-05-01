@@ -39,6 +39,7 @@ $app->group(['prefix' => 'api/wx','namespace' => 'Miniapp'], function($app)
     $app->get('evaluation/match/move','EvaluationController@matchMove');
     $app->get('evaluation/match/city','EvaluationController@matchCity');
     $app->get('evaluation/match','EvaluationController@match');
+    $app->get('evaluation/update','EvaluationController@updateNum');
 
     /*
      * 用户匹配查询

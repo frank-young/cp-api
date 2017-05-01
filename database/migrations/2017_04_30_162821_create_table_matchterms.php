@@ -23,6 +23,8 @@ class CreateTableMatchterms extends Migration
         $table->string('match_name')->comment('匹配用户的姓名');
         $table->integer('match_sex')->comment('匹配用户的性别');
         $table->float('offset')->comment('匹配度，存储的是差值');
+        $table->integer('room_num')->comment('房间号');
+        $table->integer('self_num')->comment('个人匹配号');
       });
     }
 
