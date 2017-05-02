@@ -20,7 +20,7 @@ class CreateTableQuestionterms extends Migration
         $table->string('name')->comment('用户姓名');
         $table->integer('sex')->comment('性别');
         $table->string('city')->comment('城市');
-        $table->integer('area_matching')->comment('接受怎样的区域匹配 0：只接受同城、 1 ：只接受异地、 2：都可以接受');
+        // $table->integer('area_matching')->comment('接受怎样的区域匹配 0：只接受同城、 1 ：只接受异地、 2：都可以接受');
         $table->integer('extraversion')->comment('外向性，大五人格，存入的是计算好的值');
         $table->integer('agreeableness')->comment('宜人性');
         $table->integer('conscientiousness')->comment('严谨性');

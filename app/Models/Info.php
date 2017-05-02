@@ -15,9 +15,7 @@ class Info extends Model
       'province',
       'city',
       'wechat_id',
-      'school',
-      'area_matching',
-      'age_matching'
+      'school'
     ];
     //  public $timestamps = false;
 }

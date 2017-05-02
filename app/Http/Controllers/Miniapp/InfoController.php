@@ -6,6 +6,7 @@ use App\Models\Infoterm;
 use App\Models\Question;
 use App\Models\Questionterm;
 use App\Models\Session;
+use App\Models\Term;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,13 +20,13 @@ class InfoController extends Controller
 
     public function create(Request $request)
     {
-        $session = Session::where(['private_session_key'=>$request->input('session_key')])->first();
+        $openid = Session::getOpenid($request->input('session_key'));
 
         $info = Info::create($request->all());
         $infoterm = Infoterm::create($request->all());  // 储存单期的用户信息
 
-        $infoterm->openid = $info->openid = $session->openid;
-        $infoterm->term = $info->term = 0;
+        $infoterm->openid = $info->openid = $openid;
+        $infoterm->term = $info->term = Term::getTerm();
         $info->save();
         $infoterm->save();
 
@@ -38,7 +39,6 @@ class InfoController extends Controller
         $questionterm->term = $question->term = $info->term;
         $questionterm->openid = $question->openid = $info->openid;
         $questionterm->city = $question->city = $info->city;
-        $questionterm->area_matching = $question->area_matching = $info->area_matching;
         $questionterm->name = $question->name = $request->input('name');
         $questionterm->sex = $question->sex = $request->input('sex');
         $questionterm->extraversion = $question->extraversion = $getBigFiveSum['extraversion'];

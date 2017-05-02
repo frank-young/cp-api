@@ -24,8 +24,7 @@ class Question extends Model
         'conscientiousness',
         'neuroticism',
         'openness',
-        'question_score_json',
-        'area_matching'
+        'question_score_json'
       ])->toArray();
       return $infos;
     }

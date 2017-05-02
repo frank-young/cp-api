@@ -81,7 +81,8 @@ $app->routeMiddleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Cp\JWT\Provider\LumenServiceProvider::class);
+// $app->register(Cp\JWT\Provider\LumenServiceProvider::class);
+$app->register(Dingo\Api\Provider\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -97,5 +98,17 @@ $app->register(Cp\JWT\Provider\LumenServiceProvider::class);
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../routes/web.php';
 });
+
+$app['Dingo\Api\Exception\Handler']->setErrorFormat([
+    'error' => [
+        'status_code' => ':status_code',
+        'success' => false,
+        'message' => ':message',
+        'errors' => ':errors',
+        'code' => ':code',
+        'bizContent' => ':message',
+        'debug' => ':debug'
+    ]
+]);
 
 return $app;

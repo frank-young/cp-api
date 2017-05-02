@@ -1,10 +1,4 @@
 <?php
-
-function test()
-{
-    echo "我是自定义函数类库.</br>";
-}
-
 /*
  * 利用session换取openid
  */
@@ -71,16 +65,16 @@ function returnCode($success, $msg, $bizContent)
   $res = [];
   if ($success == true) {
     $res = [
-      "errcode" => 10000,
+      "status_code" => 10000,
       "success" => true,
-      "msg" => $msg,
+      "message" => $msg,
       "bizContent" => $bizContent
     ];
   } else {
     $res = [
-      "errcode" => 40001,
+      "status_code" => 40001,
       "success" => false,
-      "msg" => $msg,
+      "message" => $msg,
       "bizContent" => $bizContent
     ];
   }

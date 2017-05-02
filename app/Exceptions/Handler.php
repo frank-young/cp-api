@@ -47,4 +47,19 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $e);
     }
+
+    // 新添加的handle函数
+    // public function handle($request, Exception $e){
+    //     // 只处理自定义的APIException异常
+    //     if($e instanceof ApiException) {
+    //         $result = [
+    //             "msg"    => "",
+    //             "data"   => $e->getMessage(),
+    //             "status" => 0
+    //         ];
+    //         return response()->json($result);
+    //     }
+    //
+    //     return parent::render($request, $e);
+    // }
 }
