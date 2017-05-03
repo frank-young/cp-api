@@ -27,6 +27,9 @@ class CreateTableInfoterms extends Migration
         $table->string('city')->comment('城市');
         $table->string('wechat_id')->comment('微信号');
         $table->string('school')->comment('学校');
+        $table->string('hobby')->nullable()->comment('喜欢的事情，爱好');
+        $table->string('dislike')->nullable()->comment('不喜欢的事情');
+        $table->string('evaluate')->nullable()->comment('自我评价');
         // $table->integer('area_matching')->comment('接受怎样的区域匹配 0：只接受同城、 1 ：只接受异地、 2：都可以接受');
         // $table->integer('age_matching')->comment('接受怎样的年龄匹配 0：都可以接受、 1：只接受比自己大的、2：只接受比自己小的');
         $table->timestamps();

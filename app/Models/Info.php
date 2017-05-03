@@ -15,7 +15,10 @@ class Info extends Model
       'province',
       'city',
       'wechat_id',
-      'school'
+      'school',
+      'hobby',
+      'dislike',
+      'evaluate'
     ];
     //  public $timestamps = false;
 }

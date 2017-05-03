@@ -55,6 +55,14 @@ class InfoController extends Controller
         return response()->json($res);
     }
 
+    public function show(Request $request)
+    {
+        $openid = Session::getOpenid($request->input('session_key'));
+
+        $res = returnCode(true,'成功','success');
+        return response()->json($info);
+    }
+
     public function update(Request $request, $id)
     {
         $info = Info::find($id);
