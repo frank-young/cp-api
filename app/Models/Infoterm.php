@@ -18,7 +18,9 @@ class Infoterm extends Model
       'school',
       'hobby',
       'dislike',
-      'evaluate'
+      'evaluate',
+      'province_index',
+      'city_index'
     ];
     //  public $timestamps = false;
 

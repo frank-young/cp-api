@@ -24,9 +24,9 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      * 用户信息填写
      */
     $api->post('info','InfoController@create');
-    $api->put('info/{id}','InfoController@update');
-    $api->delete('info/{id}','InfoController@delete');
-    $api->get('info','InfoController@index');
+    $api->put('info/update','InfoController@update');
+    $api->post('info/show','InfoController@show');
+    $api->post('info/show/again','InfoController@againShow');
 
     /*
      * 匹配算法，需要加上超级权限
@@ -47,6 +47,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      */
      $api->get('manager/term/start','ManagerController@termStart');
      $api->get('manager/term/stop','ManagerController@termStop');
+     $api->post('term/status','ManagerController@termStatus');
 
      /*
       * 微信服务端响应

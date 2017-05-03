@@ -24,7 +24,9 @@ class CreateTableInfoterms extends Migration
         $table->string('birthday')->comment('生日');
         $table->integer('constellation')->comment('星座，按月份顺序，1月开始');
         $table->string('province')->comment('省份');
+        $table->integer('province_index')->comment('省份序号');
         $table->string('city')->comment('城市');
+        $table->integer('city_index')->comment('城市序号');
         $table->string('wechat_id')->comment('微信号');
         $table->string('school')->comment('学校');
         $table->string('hobby')->nullable()->comment('喜欢的事情，爱好');
