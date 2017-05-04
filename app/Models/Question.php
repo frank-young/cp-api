@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Term;
 
 class Question extends Model
 {
@@ -13,7 +14,8 @@ class Question extends Model
     public $timestamps = false;
 
     public static function dataMigrate() {
-      $infos = self::where(['term'=>0])->get([
+      $term = Term::where(['id'=>1])->first();
+      $infos = self::where(['term'=>$term->term])->get([
         'term',
         'openid',
         'name',
@@ -24,6 +26,7 @@ class Question extends Model
         'conscientiousness',
         'neuroticism',
         'openness',
+        'is_share',
         'question_score_json'
       ])->toArray();
       return $infos;

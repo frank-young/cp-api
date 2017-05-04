@@ -27,6 +27,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->put('info/update','InfoController@update');
     $api->post('info/show','InfoController@show');
     $api->post('info/show/again','InfoController@againShow');
+    $api->post('info/share','InfoController@share');
 
     /*
      * 匹配算法，需要加上超级权限

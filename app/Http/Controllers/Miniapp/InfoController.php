@@ -21,7 +21,10 @@ class InfoController extends Controller
     public function create(Request $request)
     {
         $openid = Session::getOpenid($request->input('session_key'));
+        $term = Term::where(['id'=>1])->first();
         Infoterm::where(['openid'=>$openid])->delete();
+
+        Info::where(['openid'=>$openid, 'term'=>$term->term])->delete();
 
         $info = Info::create($request->all());
         $infoterm = Infoterm::create($request->all());  // 储存单期的用户信息
@@ -140,11 +143,19 @@ class InfoController extends Controller
         return response()->json($res);
     }
 
-    public function delete($id)
+    public function share(Request $request)
     {
-        $info = Info::find($id);
-        $info->delete();
+        $openid = Session::getOpenid($request->input('session_key'));
 
-        return response()->json('删除成功');
+        $question = Question::where(['openid'=>$openid])->firstOrFail();
+        $questionterm = Questionterm::where(['openid'=>$openid])->firstOrFail();
+
+        $question->is_share = 1;
+        $questionterm->is_share = 1;
+        $question->save();
+        $questionterm->save();
+
+        $res = returnCode(true,'成功','success');
+        return response()->json($res);
     }
 }

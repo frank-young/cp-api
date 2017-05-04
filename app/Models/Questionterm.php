@@ -24,15 +24,22 @@ class Questionterm extends Model
     }
 
     public static function addData() {
-      self::chunk(200, function ($datas) {
-        foreach ($datas as $data) {
-          if ($data->sex == 0) {
-            Boy::addData($data);
-          } else {
-            Girl::addData($data);
-          }
+      // self::chunk(200, function ($datas) {
+      //   foreach ($datas as $data) {
+      //     if ($data->sex == 0) {
+      //       Boy::addData($data);
+      //     } else {
+      //       Girl::addData($data);
+      //     }
+      //   }
+      // });
+      foreach (self::where('is_share', 1)->cursor() as $data) {
+        if ($data->sex == 0) {
+          Boy::addData($data);
+        } else {
+          Girl::addData($data);
         }
-      });
+      }
     }
 
     public static function addAll(Array $data)
@@ -43,7 +50,7 @@ class Questionterm extends Model
 
     public static function cityMatch($city)
     {
-      $infos = self::where(['city'=>$city])->get([
+      $infos = self::where(['city'=>$city, 'is_share'=>1])->get([
         'term',
         'openid',
         'name',

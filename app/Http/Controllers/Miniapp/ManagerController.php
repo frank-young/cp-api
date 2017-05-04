@@ -56,8 +56,4 @@ class ManagerController extends Controller
       return response()->json($res);
     }
 
-    public function delete($id)
-    {
-
-    }
 }
