@@ -9,7 +9,8 @@
         "laravel/lumen-framework": "5.4.*",
         "vlucas/phpdotenv": "~2.2",
         "tymon/jwt-auth": "^0.5.11",
-        "dingo/api": "1.0.x@dev"
+        "dingo/api": "1.0.x@dev",
+        "qiniu/php-sdk": "^7.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

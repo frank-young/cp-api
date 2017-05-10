@@ -25,6 +25,7 @@ class CreateTableMatchterms extends Migration
         $table->float('offset')->comment('匹配度，存储的是差值');
         $table->integer('room_num')->comment('房间号');
         $table->integer('self_num')->comment('个人匹配号');
+        $table->integer('attendance')->default(0)->comment('是否签到');
       });
     }
 

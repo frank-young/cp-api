@@ -42,6 +42,8 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      * 用户匹配查询
      */
     $api->post('match','MatchController@index');
+    $api->post('match/attendance','MatchController@attendance');
+    $api->post('match/attendance/status','MatchController@attendanceStatus');
 
     /*
      * 匹配管理
@@ -49,6 +51,11 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      $api->get('manager/term/start','ManagerController@termStart');
      $api->get('manager/term/stop','ManagerController@termStop');
      $api->post('term/status','ManagerController@termStatus');
+
+     /*
+      * 任务管理
+      */
+      $api->post('task/qiniu/token','TaskController@qiniuToken');
 
      /*
       * 微信服务端响应
