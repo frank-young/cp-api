@@ -35,7 +35,7 @@ class TaskController extends Controller
     public function show(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
-      $task = Taskmanager::find($request->input('id'))->firstOrFail();
+      $task = Taskmanager::find($request->input('id'));
       $res = returnCode(true,'获取任务成功', $task);
       return response()->json($res);
     }
