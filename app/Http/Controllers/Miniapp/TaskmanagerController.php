@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Miniapp;
 use App\Models\Session;
 use App\Models\Admin;
 use App\Models\Taskmanager;
+use App\Models\Taskterm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Exceptions\ApiException;
 
 class TaskmanagerController extends Controller
 {
+    /*
+     * 创建任务
+     */
     public function create(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
@@ -30,9 +34,19 @@ class TaskmanagerController extends Controller
       }
     }
 
-    public function show(Request $request)
+    /*
+     * 发布任务
+     */
+    public function publish(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
-
+      $role = Admin::getRole($openid);
+      if ($role == 'ADMIN' || $role == 'HOUSE_OWNER') {
+        Taskterm::publishTask(2);  // 发布任务，给每个人添加任务id
+        $res = returnCode(true,'任务发布成功','success');
+        return response()->json($res);
+      } else {
+        throw new ApiException('权限不够');
+      }
     }
 }

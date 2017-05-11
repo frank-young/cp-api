@@ -56,7 +56,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     * 任务管理
     */
     $api->post('taskmanager/create','TaskmanagerController@create');
-    $api->post('taskmanager/show','TaskmanagerController@show');
+    $api->post('taskmanager/publish','TaskmanagerController@publish');
 
     /*
     * 管理员，房主添加，超级管理员权限
@@ -67,6 +67,8 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     * 用户做任务
     */
     $api->post('task/qiniu/token','TaskController@qiniuToken');
+    $api->post('task/list','TaskController@list');
+    $api->post('task/show','TaskController@show');
 
     /*
     * 微信服务端响应

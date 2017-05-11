@@ -43,8 +43,8 @@ class MatchController extends Controller
       } else {
         $match->attendance = 1;
         $match->save();
-        Taskterm::addData($match, $openid); // 存入本期任务表
-        Task::addData($match, $openid); // 存入总任务表
+        Taskterm::addTask($match, $openid); // 存入本期任务表
+        Task::addTask($match, $openid); // 存入总任务表
         $res = returnCode(true,'查询成功','签到成功');
       }
       return response()->json($res);

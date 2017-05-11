@@ -19,6 +19,7 @@ class CreateTableTasks extends Migration
         $table->string('openid')->comment('用户openid');
         $table->string('group_id')->comment('cp组队的标识');
         $table->integer('is_dissolve')->default(0)->comment('是否解散，如果2天不做任务将解散cp，此为其标识');
+        $table->integer('room_num')->comment('房间号');
         $table->string('task_arr')->nullable()->comment('领取任务的数组，格式为数组字符串');
       });
     }
