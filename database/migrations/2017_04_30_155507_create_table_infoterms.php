@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTableInfoterms extends Migration
 {
     /**
-     * Run the migrations.
+     * 此表暂时没有清空处理，应该也是需要清空，不过在完成一期之后
      *
      * @return void
      */

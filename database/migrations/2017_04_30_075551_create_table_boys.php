@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTableBoys extends Migration
 {
     /**
-     * Run the migrations.
+     * 存储匹配男孩的缓存表
      *
      * @return void
      */

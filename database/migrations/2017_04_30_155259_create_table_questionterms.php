@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTableQuestionterms extends Migration
 {
     /**
-     * Run the migrations.
+     * 此表在匹配时会被清空
      *
      * @return void
      */

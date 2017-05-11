@@ -12,7 +12,7 @@ class TaskController extends Controller
     public function qiniuToken(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
-      
+
       $accessKey = 'BeGCarWqHHOEatmrX202EdWvT10YYW5JBYBxT-1D';
       $secretKey = 'F6hseEQ-Q9eFwgTzkWafCDTlNEK8qJkl0icILxB4';
       $bucketName = 'nana-cp-miniapp';
@@ -20,7 +20,7 @@ class TaskController extends Controller
       $auth = new Auth($accessKey, $secretKey);
       $token = $auth->uploadToken($bucketName);
 
-      $res = returnCode(true,'查询成功',$token);
+      $res = returnCode(true,'获取uptoken成功',$token);
       return response()->json($res);
     }
 }

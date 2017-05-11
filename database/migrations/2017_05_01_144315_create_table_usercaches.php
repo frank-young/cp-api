@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateTableUsercaches extends Migration
 {
     /**
-     * Run the migrations.
+     * 匹配时的缓存表
      *
      * @return void
      */

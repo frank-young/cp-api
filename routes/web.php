@@ -48,18 +48,29 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     /*
      * 匹配管理
      */
-     $api->get('manager/term/start','ManagerController@termStart');
-     $api->get('manager/term/stop','ManagerController@termStop');
-     $api->post('term/status','ManagerController@termStatus');
+    $api->get('manager/term/start','ManagerController@termStart');
+    $api->get('manager/term/stop','ManagerController@termStop');
+    $api->post('term/status','ManagerController@termStatus');
 
-     /*
-      * 任务管理
-      */
-      $api->post('task/qiniu/token','TaskController@qiniuToken');
+    /*
+    * 任务管理
+    */
+    $api->post('taskmanager/create','TaskmanagerController@create');
+    $api->post('taskmanager/show','TaskmanagerController@show');
 
-     /*
-      * 微信服务端响应
-      */
-      $api->post('wechat/response','WechatController@response');
+    /*
+    * 管理员，房主添加，超级管理员权限
+    */
+    $api->post('admin/create','AdminController@create');
+
+    /*
+    * 用户做任务
+    */
+    $api->post('task/qiniu/token','TaskController@qiniuToken');
+
+    /*
+    * 微信服务端响应
+    */
+    $api->post('wechat/response','WechatController@response');
 
 });
