@@ -42,7 +42,7 @@ class TaskmanagerController extends Controller
       $openid = Session::getOpenid($request->input('session_key'));
       $role = Admin::getRole($openid);
       if ($role == 'ADMIN' || $role == 'HOUSE_OWNER') {
-        Taskterm::publishTask(2);  // 发布任务，给每个人添加任务id
+        Taskterm::publishTask(3);  // 发布任务，给每个人添加任务id
         $res = returnCode(true,'任务发布成功','success');
         return response()->json($res);
       } else {

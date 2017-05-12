@@ -71,6 +71,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('task/show','TaskController@show');
 
     $api->post('taskahead/create','TaskaheadController@create');
+    $api->post('taskahead/show','TaskaheadController@show');
 
     /*
     * 微信服务端响应

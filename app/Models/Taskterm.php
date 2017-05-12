@@ -37,7 +37,7 @@ class Taskterm extends Model
      public static function publishTask(Int $id) {
        $datas = self::cursor();
        foreach ($datas as $data) {
-         $task = self::find($data->id)->first();
+         $task = self::find($data->id);
          $task_arr = (array)json_decode($task->task_arr);
          array_push($task_arr, $id);
          $task->task_arr = json_encode($task_arr);
