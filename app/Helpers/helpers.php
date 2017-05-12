@@ -64,6 +64,9 @@ function returnCode($success, $msg, $bizContent)
 {
   $res = [];
   if ($success == true) {
+    if (!empty($bizContent['openid'])) {
+      unset($bizContent['openid']);
+    }
     $res = [
       "status_code" => 10000,
       "success" => true,

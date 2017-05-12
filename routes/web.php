@@ -64,11 +64,13 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('admin/create','AdminController@create');
 
     /*
-    * 用户做任务
+    * 用户任务获取，以及用户完成任务
     */
     $api->post('task/qiniu/token','TaskController@qiniuToken');
     $api->post('task/list','TaskController@list');
     $api->post('task/show','TaskController@show');
+
+    $api->post('taskahead/create','TaskaheadController@create');
 
     /*
     * 微信服务端响应

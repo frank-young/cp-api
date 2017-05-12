@@ -6,6 +6,7 @@ use Qiniu\Auth;
 use App\Models\Session;
 use App\Models\Taskmanager;
 use App\Models\Taskterm;
+use App\Models\Taskahead;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
