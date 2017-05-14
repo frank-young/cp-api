@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class TaskaheadController extends Controller
 {
     /*
-     * 完成每一次任务
+     * 完成每一次任务.
      */
     public function create(Request $request)
     {
