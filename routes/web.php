@@ -53,19 +53,19 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('term/status','ManagerController@termStatus');
 
     /*
-    * 任务管理
-    */
+     * 任务管理
+     */
     $api->post('taskmanager/create','TaskmanagerController@create');
     $api->post('taskmanager/publish','TaskmanagerController@publish');
 
     /*
-    * 管理员，房主添加，超级管理员权限
-    */
+     * 管理员，房主添加，超级管理员权限
+     */
     $api->post('admin/create','AdminController@create');
 
     /*
-    * 用户任务获取，以及用户完成任务
-    */
+     * 用户任务获取，以及用户完成任务
+     */
     $api->post('task/qiniu/token','TaskController@qiniuToken');
     $api->post('task/list','TaskController@list');
     $api->post('task/show','TaskController@show');
@@ -74,8 +74,20 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('taskahead/show','TaskaheadController@show');
 
     /*
-    * 微信服务端响应
-    */
+     * 话题部分
+     */
+    $api->post('topic/create','TopicController@create');
+    $api->post('topic','TopicController@index');
+    $api->post('topic/show','TopicController@show');
+
+    /*
+     * 话题评论部分
+     */
+    $api->post('comment/create','CommentController@create');
+
+    /*
+     * 微信服务端响应
+     */
     $api->post('wechat/response','WechatController@response');
 
 });
