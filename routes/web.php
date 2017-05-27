@@ -84,6 +84,14 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      * 话题评论部分
      */
     $api->post('comment/create','CommentController@create');
+    $api->post('comment/index','CommentController@index');
+
+    /*
+     * 话题评论部分
+     */
+    $api->post('topicpraise/status','TopicpraiseController@status');
+    $api->post('topicpraise/agree','TopicpraiseController@agree');
+    $api->post('topicpraise/cancel','TopicpraiseController@cancel');
 
     /*
      * 微信服务端响应
