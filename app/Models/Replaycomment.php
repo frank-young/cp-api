@@ -10,7 +10,9 @@ class Replaycomment extends Model
       'comment_id',
       'content',
       'praise_num',
-      'replay_num'
+      'replay_num',
+      'offset',
+      'limit'
     ];
     // 查询话题所对应的用户
     public function user() {

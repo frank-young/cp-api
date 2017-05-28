@@ -15,7 +15,9 @@ class Topic extends Model
       'thumbnail_pic',
       'image_path',
       'praise_num',
-      'comment_num'
+      'comment_num',
+      'offset',
+      'limit'
     ];
     // 查询话题所对应的用户
     public function user() {

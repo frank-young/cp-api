@@ -11,7 +11,9 @@ class Comment extends Model
       'topic_id',
       'content',
       'praise_num',
-      'replay_num'
+      'replay_num',
+      'offset',
+      'limit'
     ];
     // 查询评论所对应的用户
     public function user() {

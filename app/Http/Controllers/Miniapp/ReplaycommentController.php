@@ -19,7 +19,23 @@ class ReplaycommentController extends Controller
       if ($replaycomment->save()) {
         Comment::addReplayNum($request->input('comment_id'));
       }
-      $res = returnCode(true,'评论成功','success');
+      $res = returnCode(true,'回复成功','success');
+      return response()->json($res);
+    }
+
+    public function index(Request $request)
+    {
+      $openid = Session::getOpenid($request->input('session_key'));
+      $offset = $request->input('offset');
+      $limit = $request->input('limit');
+      $comment_id = $request->input('comment_id');
+      $replayComments = Replaycomment::with('user')
+        ->where(['comment_id' => $comment_id])
+        ->offset($offset)
+        ->limit($limit)
+        ->orderBy('updated_at', 'desc')
+        ->get();
+      $res = returnCode(true,'查询成功',$replayComments);
       return response()->json($res);
     }
 }

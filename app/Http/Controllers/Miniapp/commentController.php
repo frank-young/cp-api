@@ -40,9 +40,14 @@ class CommentController extends Controller
       return response()->json($res);
     }
 
-    public function update(Request $request)
+    public function show(Request $request)
     {
+      $openid = Session::getOpenid($request->input('session_key'));
+      $id = $request->input('id');
+      $comment = Comment::findOrFail($id);
 
+      $res = returnCode(true,'查询成功', $comment);
+      return response()->json($res);
     }
 
 }

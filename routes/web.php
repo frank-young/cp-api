@@ -85,6 +85,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      */
     $api->post('comment/create','CommentController@create');
     $api->post('comment/index','CommentController@index');
+    $api->post('comment/show','CommentController@show');
 
     /*
      * 话题点赞部分
@@ -97,6 +98,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      * 回复评论部分
      */
     $api->post('replaycomment/create','ReplaycommentController@create');
+    $api->post('replaycomment/index','ReplaycommentController@index');
 
 
     /*
