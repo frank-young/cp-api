@@ -32,4 +32,18 @@ class Topic extends Model
     // {
     //   return $this->hasMany('App\Models\Comment', 'topic_id', 'id');
     // }
+
+    // 增加点赞数
+    static public function addPraiseNum($id) {
+      $res = self::where(['id' => $id])->first();
+      $res->praise_num = $res->praise_num + 1;
+      $res->save();
+    }
+
+    // 减少点赞数
+    static public function reducePraiseNum($id) {
+      $res = self::where(['id' => $id])->first();
+      $res->praise_num = $res->praise_num - 1;
+      $res->save();
+    }
 }
