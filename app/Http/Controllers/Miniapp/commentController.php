@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
-
     public function create(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
@@ -44,7 +43,9 @@ class CommentController extends Controller
     {
       $openid = Session::getOpenid($request->input('session_key'));
       $id = $request->input('id');
-      $comment = Comment::findOrFail($id);
+      $comment = Comment::with('user')
+        ->where(['id' => $id])
+        ->first();
 
       $res = returnCode(true,'查询成功', $comment);
       return response()->json($res);
