@@ -30,6 +30,7 @@ class CommentController extends Controller
       $limit = $request->input('limit');
       $comments = Comment::with('user')
         ->where(['topic_id' => $topic_id])
+        ->with('praise')
         ->offset($offset)
         ->limit($limit)
         ->orderBy('updated_at', 'desc')

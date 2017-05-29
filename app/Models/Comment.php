@@ -3,6 +3,7 @@ namespace App\Models;
 
 use App\Models\Wxuser;
 use App\Models\Replaycomment;
+use App\Models\Commentpraise;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
@@ -18,6 +19,12 @@ class Comment extends Model
     // 查询评论所对应的用户
     public function user() {
       return $this->belongsTo('App\Models\Wxuser', 'openid', 'openid');
+    }
+    // 查询点赞所对应的用户
+    public function praise() {
+      $result = $this->belongsTo('App\Models\Commentpraise', 'comment_id', 'id');
+
+      return $result;
     }
 
     // 评论增加回复数
