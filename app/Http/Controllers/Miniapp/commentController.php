@@ -33,7 +33,7 @@ class CommentController extends Controller
         ->with('praise')
         ->offset($offset)
         ->limit($limit)
-        ->orderBy('updated_at', 'desc')
+        ->orderBy('praise_num', 'desc')
         ->get();
 
       $res = returnCode(true,'查询成功', $comments);

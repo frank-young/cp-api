@@ -22,8 +22,7 @@ class Comment extends Model
     }
     // 查询点赞所对应的用户
     public function praise() {
-      $result = $this->belongsTo('App\Models\Commentpraise', 'comment_id', 'id');
-
+      $result = $this->belongsTo('App\Models\Commentpraise', 'id', 'comment_id');
       return $result;
     }
 
@@ -31,6 +30,20 @@ class Comment extends Model
     static public function addReplayNum($id) {
       $res = self::where(['id' => $id])->first();
       $res->replay_num = $res->replay_num + 1;
+      $res->save();
+    }
+
+    // 增加点赞数
+    static public function addPraiseNum($id) {
+      $res = self::where(['id' => $id])->first();
+      $res->praise_num = $res->praise_num + 1;
+      $res->save();
+    }
+
+    // 减少点赞数
+    static public function reducePraiseNum($id) {
+      $res = self::where(['id' => $id])->first();
+      $res->praise_num = $res->praise_num - 1;
       $res->save();
     }
 }

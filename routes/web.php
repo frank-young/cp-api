@@ -100,6 +100,12 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('replaycomment/create','ReplaycommentController@create');
     $api->post('replaycomment/index','ReplaycommentController@index');
 
+    /*
+     * 评论点赞部分
+     */
+    $api->post('commentpraise/status','CommentpraiseController@status');
+    $api->post('commentpraise/agree','CommentpraiseController@agree');
+    $api->post('commentpraise/cancel','CommentpraiseController@cancel');
 
     /*
      * 微信服务端响应
