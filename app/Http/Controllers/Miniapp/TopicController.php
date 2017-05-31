@@ -43,8 +43,9 @@ class TopicController extends Controller
       // $openid = Session::getOpenid($request->input('session_key'));
       $id = $request->input('id');
       $topic = Topic::where(['id' => $id])->with('user')->first();
+      $topic->thumbnail_pic = json_decode($topic->thumbnail_pic);
       $topic->image_path = json_decode($topic->image_path);
-      
+
       $res = returnCode(true,'查询成功', $topic);
       return response()->json($res);
     }
