@@ -12,7 +12,8 @@ class TopicController extends Controller
     {
       $this->validate($request, [
         'title' => 'required',
-        'description' => 'required'
+        'description' => 'required',
+        'body' => 'required'
       ]);
       $openid = Session::getOpenid($request->input('session_key'));
       $topic = Topic::create($request->all());
@@ -29,6 +30,10 @@ class TopicController extends Controller
       $limit = $request->input('limit');
       $topics = Topic::with('user')->offset($offset)->limit($limit)->orderBy('updated_at', 'desc')->get();
 
+      foreach ($topics as $key => $value) {
+        $value->thumbnail_pic = json_decode($value->thumbnail_pic);
+      }
+
       $res = returnCode(true,'查询成功', $topics);
       return response()->json($res);
     }
@@ -38,7 +43,8 @@ class TopicController extends Controller
       // $openid = Session::getOpenid($request->input('session_key'));
       $id = $request->input('id');
       $topic = Topic::where(['id' => $id])->with('user')->first();
-
+      $topic->image_path = json_decode($topic->image_path);
+      
       $res = returnCode(true,'查询成功', $topic);
       return response()->json($res);
     }

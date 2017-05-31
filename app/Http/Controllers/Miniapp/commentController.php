@@ -46,6 +46,7 @@ class CommentController extends Controller
       $id = $request->input('id');
       $comment = Comment::with('user')
         ->where(['id' => $id])
+        ->with('praise')
         ->first();
 
       $res = returnCode(true,'查询成功', $comment);
