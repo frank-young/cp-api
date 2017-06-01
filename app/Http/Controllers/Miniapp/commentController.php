@@ -35,7 +35,11 @@ class CommentController extends Controller
         ->limit($limit)
         ->orderBy('praise_num', 'desc')
         ->get();
-
+      foreach ($comments as $key => $value) {
+        $value->date_format = formatDate($value->created_at);
+        unset($value->openid);
+        unset($value->user->openid);
+      }
       $res = returnCode(true,'查询成功', $comments);
       return response()->json($res);
     }
@@ -48,7 +52,9 @@ class CommentController extends Controller
         ->where(['id' => $id])
         ->with('praise')
         ->first();
-
+      $comment->date_format = formatDate($comment->created_at);
+      unset($comment->openid);
+      unset($comment->user->openid);
       $res = returnCode(true,'查询成功', $comment);
       return response()->json($res);
     }

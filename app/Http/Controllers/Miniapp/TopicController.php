@@ -32,6 +32,9 @@ class TopicController extends Controller
 
       foreach ($topics as $key => $value) {
         $value->thumbnail_pic = json_decode($value->thumbnail_pic);
+        $value->date_format = formatDate($value->created_at);
+        unset($value->openid);
+        unset($value->user->openid);
       }
 
       $res = returnCode(true,'查询成功', $topics);
@@ -45,7 +48,9 @@ class TopicController extends Controller
       $topic = Topic::where(['id' => $id])->with('user')->first();
       $topic->thumbnail_pic = json_decode($topic->thumbnail_pic);
       $topic->image_path = json_decode($topic->image_path);
-
+      $topic->date_format = formatDate($topic->created_at);
+      unset($topic->openid);
+      unset($topic->user->openid);
       $res = returnCode(true,'查询成功', $topic);
       return response()->json($res);
     }

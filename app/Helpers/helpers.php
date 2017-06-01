@@ -116,3 +116,42 @@ function getBigFiveSum($questions_data)
     'openness' => $openness
   );
 }
+
+/*
+ * 返回复杂时间格式
+ */
+function formatDate($date)
+{
+  $diff = strtotime('now')-strtotime($date);
+  $timeRange = [
+    'min' => 60,
+    'hour' => 3600,
+    'day' => 86400,
+    'date' => 259200
+  ];
+  $textRange = [
+    'now' => '刚刚',
+    'min' => '分钟前',
+    'hour' => '小时前',
+    'day' => '天前'
+  ];
+  if ($diff <= $timeRange['min']) {
+    return $textRange['now'];
+  } else if ($diff > $timeRange['min'] && $diff <= $timeRange['hour']) {
+    return floor($diff/60).$textRange['min'];
+  } else if ($diff > $timeRange['hour'] && $diff <= $timeRange['day']) {
+    return floor($diff/60/60).$textRange['hour'];
+  } else if ($diff > $timeRange['day'] && $diff <= $timeRange['date']) {
+    return floor($diff/60/60/24).$textRange['day'];
+  } else if ($diff > $timeRange['date']) {
+    return date('m-d H:i', strtotime($date));
+  }
+}
+
+/*
+ * 返回普通时间格式
+ */
+function formatDateSimple($date)
+{
+  return date('m-d H:i', strtotime($date));
+}

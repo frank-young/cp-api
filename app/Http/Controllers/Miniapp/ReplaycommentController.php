@@ -35,6 +35,11 @@ class ReplaycommentController extends Controller
         ->limit($limit)
         ->orderBy('updated_at', 'desc')
         ->get();
+      foreach ($replayComments as $key => $value) {
+        $value->date_format = formatDate($value->created_at);
+        unset($value->openid);
+        unset($value->user->openid);
+      }
       $res = returnCode(true,'查询成功',$replayComments);
       return response()->json($res);
     }
