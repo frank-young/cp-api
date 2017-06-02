@@ -23,19 +23,19 @@ class WxuserController extends Controller
       /*
        * 用session存入数据库来验证用户是否登录
        */
-      $result = Session::where(['openid'=>$wx_session->openid])->get();
-      $session = new Session; // 存入登录验证信息表
-      if ($result->isEmpty()) {
-        $session->openid = $wx_session->openid;
+      $result = Session::where(['openid'=>$wx_session->openid])->first();
+      if (empty($result)) {
+       $session = new Session;
+       $session->openid = $wx_session->openid;
+       $session->save();
       } else {
-        $session = Session::where(['openid'=>$wx_session->openid])->first();
+       $result->session_key = $wx_session->session_key;
+       $result->private_session_key = $key_session;
+       $result->save();
       }
-      $session->session_key = $wx_session->session_key;
-      $session->private_session_key = $key_session;
-      $session->save();
 
-      $resultWxuser = Wxuser::where(['openid'=>$wx_session->openid])->get();
-      if ($resultWxuser->isEmpty()) {
+      $resultWxuser = Wxuser::where(['openid'=>$wx_session->openid])->first();
+      if (empty($resultWxuser)) {
         $wxuser = new Wxuser; // 存入用户信息表
         $wxuser->openid = $wx_session->openid;
         $wxuser->save();
@@ -46,27 +46,29 @@ class WxuserController extends Controller
       return response()->json($res);
     }
 
+    // 这里为获取用户信息同意后的登录，为主要入口
     public function getuserinfo(Request $request)
     {
       $userinfo = json_decode($request->input('userinfo'));
       $wx_session = jscode2session($request->input('code'),$this->appId,$this->appSecret);
       $key_session = create_guid();
 
-      $result = Session::where(['openid'=>$wx_session->openid])->get();
-      $session = new Session; // 存入登录验证信息表
-      if ($result->isEmpty()) {
+      $result = Session::where(['openid'=>$wx_session->openid])->first();
+      if (empty($result)) {
+        $session = new Session;
         $session->openid = $wx_session->openid;
+        $session->session_key = $wx_session->session_key;
+        $session->private_session_key = $key_session;
+        $session->save();
       } else {
-        $session = Session::where(['openid'=>$wx_session->openid])->first();
+        $result->session_key = $wx_session->session_key;
+        $result->private_session_key = $key_session;
+        $result->save();
       }
-      $session->session_key = $wx_session->session_key;
-      $session->private_session_key = $key_session;
-      $session->save();
 
-      $resultWxuser = Wxuser::where(['openid'=>$wx_session->openid])->get();
-      if ($resultWxuser->isEmpty()) {
+      $resultWxuser = Wxuser::where(['openid'=>$wx_session->openid])->first();
+      if (empty($resultWxuser)) {
         $wxuser = new Wxuser; // 存入用户信息表
-        // $wxuser = $userinfo->userInfo;
         $wxuser->openid = $wx_session->openid;
         $wxuser->nickName = $userinfo->userInfo->nickName;
         $wxuser->avatarUrl = $userinfo->userInfo->avatarUrl;
@@ -82,8 +84,9 @@ class WxuserController extends Controller
       return response()->json($res);
     }
 
-    public function getopenid(Request $request)
+    public function getSessionKey(Request $request)
     {
+      // $openid = Session::getOpenid($request->input('session_key'));
       if (!empty($request->input('session_key'))) {
         $session = Session::where(['private_session_key'=>$request->input('session_key')])->first();
         if (!empty($session->openid)) {

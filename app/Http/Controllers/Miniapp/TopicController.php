@@ -28,7 +28,10 @@ class TopicController extends Controller
       // $openid = Session::getOpenid($request->input('session_key'));
       $offset = $request->input('offset');
       $limit = $request->input('limit');
-      $topics = Topic::with('user')->offset($offset)->limit($limit)->orderBy('updated_at', 'desc')->get();
+      $topics = Topic::with('user')
+      ->offset($offset)
+      ->limit($limit)
+      ->orderBy('updated_at', 'desc')->get();
 
       foreach ($topics as $key => $value) {
         $value->thumbnail_pic = json_decode($value->thumbnail_pic);

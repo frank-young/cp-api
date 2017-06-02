@@ -47,9 +47,13 @@ class TaskController extends Controller
     public function list(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
-      $task = Taskterm::where(['openid' => $openid])->firstOrFail();
+      $task = Taskterm::where(['openid' => $openid])->first();
+      if (!empty($task)) {
+        $res = returnCode(true,'获取个人任务信息成功', $task);
+      } else {
+        $res = returnCode(false,'暂无个人任务信息', 'no massage');
+      }
 
-      $res = returnCode(true,'获取个人任务信息成功', $task);
       return response()->json($res);
     }
 }

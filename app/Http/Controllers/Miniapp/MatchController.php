@@ -14,8 +14,8 @@ class MatchController extends Controller
     public function index(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
-      $match = Matchterm::where(['openid'=>$openid]);
-      if ($match->get()->isEmpty()) {
+      $match = Matchterm::where(['openid'=>$openid])->first();
+      if (empty($match)) {
         $res = returnCode(true,'查询成功','匹配未成功');
       } else {
         $wxuser = Wxuser::where(['openid'=>$openid])->firstOrFail();
@@ -27,6 +27,7 @@ class MatchController extends Controller
         $info->self_num = $match->first()->self_num;
         $info->avatarUrl = $wxuser->avatarUrl;
         $info->nickName = $wxuser->nickName;
+        $info->age = calcAge($info->birthday);
         $res = returnCode(true,'查询成功',$info);
       }
 

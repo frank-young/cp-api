@@ -155,3 +155,12 @@ function formatDateSimple($date)
 {
   return date('m-d H:i', strtotime($date));
 }
+
+/*
+ * 计算年龄
+ */
+function calcAge($date)
+{
+  $age = substr($date, 0, 4);
+  return date('Y') - $age;
+}

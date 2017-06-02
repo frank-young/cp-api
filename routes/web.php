@@ -48,8 +48,9 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     /*
      * 匹配管理
      */
-    $api->get('manager/term/start','ManagerController@termStart');
-    $api->get('manager/term/stop','ManagerController@termStop');
+    $api->post('manager/term/start','ManagerController@termStart');
+    $api->post('manager/term/stop','ManagerController@termStop');
+    $api->post('manager/term/info','ManagerController@termInfo');
     $api->post('term/status','ManagerController@termStatus');
 
     /*
