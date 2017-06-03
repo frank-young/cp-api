@@ -113,6 +113,8 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      */
     $api->post('applyroom/create','ApplyroomController@create');
     $api->post('applyroom/index','ApplyroomController@index');
+    $api->post('applyroom/agree','ApplyroomController@agree');
+    $api->post('applyroom/notagree','ApplyroomController@notAgree');
 
     /*
      * 微信服务端响应

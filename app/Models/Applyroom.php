@@ -8,6 +8,7 @@ class Applyroom extends Model
 {
     protected $fillable = [
       'name',
+      'openid',
       'phone',
       'content',
       'is_agree'

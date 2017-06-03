@@ -37,10 +37,48 @@ class ApplyroomController extends Controller
         ->orderBy('updated_at', 'desc')->get();
 
         foreach ($applyrooms as $key => $value) {
-          unset($value->openid);
+          // unset($value->openid);
           unset($value->user->openid);
         }
         $res = returnCode(true,'查询成功',$applyrooms);
+      } else {
+        $res = returnCode(false,'权限不够','fail');
+      }
+      return response()->json($res);
+    }
+
+    /*
+     *  同意成为房主
+     */
+    public function agree(Request $request)
+    {
+      $openid = Session::getOpenid($request->input('session_key'));
+      $role = Admin::getRole($openid);
+      $apply_openid = $request->input('openid');
+      if ($role == 'ADMIN') {
+        $applyrooms = Applyroom::where(['openid'=>$apply_openid])->first();
+        $applyrooms->is_agree = 1;
+        $applyrooms->save();
+        $res = returnCode(true,'修改成功','success');
+      } else {
+        $res = returnCode(false,'权限不够','fail');
+      }
+      return response()->json($res);
+    }
+
+    /*
+     *  拒绝成为房主
+     */
+    public function notAgree(Request $request)
+    {
+      $openid = Session::getOpenid($request->input('session_key'));
+      $role = Admin::getRole($openid);
+      $apply_openid = $request->input('openid');
+      if ($role == 'ADMIN') {
+        $applyrooms = Applyroom::where(['openid'=>$apply_openid])->first();
+        $applyrooms->is_agree = 2;
+        $applyrooms->save();
+        $res = returnCode(true,'修改成功','success');
       } else {
         $res = returnCode(false,'权限不够','fail');
       }
