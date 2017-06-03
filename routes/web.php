@@ -109,6 +109,12 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('commentpraise/cancel','CommentpraiseController@cancel');
 
     /*
+     * 申请房主
+     */
+    $api->post('applyroom/create','ApplyroomController@create');
+    $api->post('applyroom/index','ApplyroomController@index');
+
+    /*
      * 微信服务端响应
      */
     $api->post('wechat/response','WechatController@response');
