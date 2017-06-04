@@ -115,6 +115,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('applyroom/index','ApplyroomController@index');
     $api->post('applyroom/agree','ApplyroomController@agree');
     $api->post('applyroom/notagree','ApplyroomController@notAgree');
+    $api->post('applyroom/status','ApplyroomController@status');
 
     /*
      * 微信服务端响应

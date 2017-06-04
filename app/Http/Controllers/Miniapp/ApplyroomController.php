@@ -56,9 +56,9 @@ class ApplyroomController extends Controller
       $role = Admin::getRole($openid);
       $apply_openid = $request->input('openid');
       if ($role == 'ADMIN') {
-        $applyrooms = Applyroom::where(['openid'=>$apply_openid])->first();
-        $applyrooms->is_agree = 1;
-        $applyrooms->save();
+        $applyroom = Applyroom::where(['openid'=>$apply_openid])->first();
+        $applyroom->is_agree = 1;
+        $applyroom->save();
         $res = returnCode(true,'修改成功','success');
       } else {
         $res = returnCode(false,'权限不够','fail');
@@ -75,12 +75,27 @@ class ApplyroomController extends Controller
       $role = Admin::getRole($openid);
       $apply_openid = $request->input('openid');
       if ($role == 'ADMIN') {
-        $applyrooms = Applyroom::where(['openid'=>$apply_openid])->first();
-        $applyrooms->is_agree = 2;
-        $applyrooms->save();
+        $applyroom = Applyroom::where(['openid'=>$apply_openid])->first();
+        $applyroom->is_agree = 2;
+        $applyroom->save();
         $res = returnCode(true,'修改成功','success');
       } else {
         $res = returnCode(false,'权限不够','fail');
+      }
+      return response()->json($res);
+    }
+
+    /*
+     *  获取当前状态
+     */
+    public function status(Request $request)
+    {
+      $openid = Session::getOpenid($request->input('session_key'));
+      $applyroom = Applyroom::where(['openid'=>$openid])->first();
+      if (!empty($applyroom)) {
+        $res = returnCode(true,'获取成功',$applyroom);
+      } else {
+        $res = returnCode(false,'未申请过房主','not room-owner');
       }
       return response()->json($res);
     }
