@@ -58,6 +58,9 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      */
     $api->post('taskmanager/create','TaskmanagerController@create');
     $api->post('taskmanager/publish','TaskmanagerController@publish');
+    $api->post('taskmanager/index','TaskmanagerController@index');
+    $api->post('taskmanager/show','TaskmanagerController@show');
+    $api->post('taskmanager/update','TaskmanagerController@update');
 
     /*
      * 管理员，房主添加，超级管理员权限

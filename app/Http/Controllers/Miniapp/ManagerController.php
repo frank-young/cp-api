@@ -5,6 +5,7 @@ use App\Models\Admin;
 use App\Models\Session;
 use App\Models\Term;
 use App\Models\Taskahead;
+use App\Models\Taskterm;
 use App\Models\Questionterm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -67,7 +68,7 @@ class ManagerController extends Controller
     public function termStatus(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
-      $task = Taskahead::where(['openid' => $openid])->first();
+      $task = Taskterm::where(['openid' => $openid])->first();
       if (!empty($task)) {
         $res = returnCode(true,'查看任务',5);
       } else {
