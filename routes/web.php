@@ -63,6 +63,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
      * 管理员，房主添加，超级管理员权限
      */
     $api->post('admin/create','AdminController@create');
+    $api->post('admin/role','AdminController@role');
 
     /*
      * 用户任务获取，以及用户完成任务
@@ -116,6 +117,15 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('applyroom/agree','ApplyroomController@agree');
     $api->post('applyroom/notagree','ApplyroomController@notAgree');
     $api->post('applyroom/status','ApplyroomController@status');
+
+    /*
+     * 添加房间
+     */
+    $api->post('room/create','RoomController@create');
+    $api->post('room/index','RoomController@index');
+    $api->post('room/show','RoomController@show');
+    $api->post('room/update','RoomController@update');
+    $api->post('room/num','RoomController@num');
 
     /*
      * 微信服务端响应

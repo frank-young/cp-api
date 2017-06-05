@@ -25,7 +25,7 @@ class TopicController extends Controller
 
     public function index(Request $request)
     {
-      // $openid = Session::getOpenid($request->input('session_key'));
+      $openid = Session::getOpenid($request->input('session_key'));
       $offset = $request->input('offset');
       $limit = $request->input('limit');
       $topics = Topic::with('user')
@@ -46,7 +46,7 @@ class TopicController extends Controller
 
     public function show(Request $request)
     {
-      // $openid = Session::getOpenid($request->input('session_key'));
+      $openid = Session::getOpenid($request->input('session_key'));
       $id = $request->input('id');
       $topic = Topic::where(['id' => $id])->with('user')->first();
       $topic->thumbnail_pic = json_decode($topic->thumbnail_pic);

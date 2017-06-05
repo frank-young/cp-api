@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Miniapp;
 
 use App\Models\Applyroom;
+use App\Models\Wxuser;
 use App\Models\Admin;
 use App\Models\Session;
 use Illuminate\Http\Request;
@@ -56,9 +57,10 @@ class ApplyroomController extends Controller
       $role = Admin::getRole($openid);
       $apply_openid = $request->input('openid');
       if ($role == 'ADMIN') {
-        $applyroom = Applyroom::where(['openid'=>$apply_openid])->first();
-        $applyroom->is_agree = 1;
-        $applyroom->save();
+        $wxuser = Wxuser::dataMigrate($apply_openid); // 取出数据
+        Admin::addOne($wxuser, $apply_openid); // 存入数据
+        Admin::setRole('HOUSE_OWNER', $apply_openid); // 添加权限，管理员权限
+        Applyroom::agree($apply_openid);  // 同意操作
         $res = returnCode(true,'修改成功','success');
       } else {
         $res = returnCode(false,'权限不够','fail');
@@ -75,9 +77,8 @@ class ApplyroomController extends Controller
       $role = Admin::getRole($openid);
       $apply_openid = $request->input('openid');
       if ($role == 'ADMIN') {
-        $applyroom = Applyroom::where(['openid'=>$apply_openid])->first();
-        $applyroom->is_agree = 2;
-        $applyroom->save();
+        Applyroom::agree($apply_openid);  //拒绝操作
+
         $res = returnCode(true,'修改成功','success');
       } else {
         $res = returnCode(false,'权限不够','fail');
