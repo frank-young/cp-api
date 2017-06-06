@@ -19,7 +19,7 @@ class CreateTableTaskaheads extends Migration
         $table->string('openid')->comment('用户openid');
         $table->string('group_id')->comment('cp组队的标识');
         $table->integer('taskmanager_id')->comment('任务id');
-        $table->string('image_path')->nullable()->comment('图片任务，图片的数组，格式为数组字符串');
+        $table->text('image_path')->nullable()->comment('图片任务，图片的数组，格式为数组字符串');
         $table->string('text')->nullable()->comment('文字任务');
         $table->string('voice')->nullable()->comment('音频任务');
         $table->string('other')->nullable()->comment('其他任务');

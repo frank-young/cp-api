@@ -27,10 +27,10 @@ class ManagerController extends Controller
         } else {
           $res = returnCode(false,'开启失败，正在报名中','fail');
         }
-        return response()->json($res);
       } else {
-        throw new ApiException('权限不够');
+        $res = returnCode(false,'权限不够','fail');
       }
+      return response()->json($res);
     }
 
     public function termStop(Request $request)
@@ -46,23 +46,28 @@ class ManagerController extends Controller
         } else {
           $res = returnCode(false,'关闭失败，报名已经结束','fail');
         }
-        return response()->json($res);
       } else {
-        throw new ApiException('权限不够');
+        $res = returnCode(false,'权限不够','fail');
       }
+      return response()->json($res);
     }
 
+    /*
+     *  获取本次报名信息和报名状态信息
+     */
     public function termInfo(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
       $role = Admin::getRole($openid);
       if ($role == 'ADMIN') {
         $term = Term::where(['id'=>1])->first();
+        $term->boy_num = Questionterm::where(['sex' =>1])->count();
+        $term->girl_num = Questionterm::where(['sex' =>0])->count();
         $res = returnCode(true,'获取成功',$term);
-        return response()->json($res);
       } else {
-        throw new ApiException('权限不够');
+        $res = returnCode(false,'权限不够','fail');
       }
+      return response()->json($res);
     }
 
     public function termStatus(Request $request)
