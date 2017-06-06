@@ -96,4 +96,15 @@ class ManagerController extends Controller
       return response()->json($res);
     }
 
+    /*
+     *  用户获取本次报名信息和报名日期
+     */
+    public function termDateInfo(Request $request)
+    {
+      $openid = Session::getOpenid($request->input('session_key'));
+      $term = Term::where(['id'=>1])->first();
+      $res = returnCode(true,'获取成功',$term);
+      return response()->json($res);
+    }
+
 }

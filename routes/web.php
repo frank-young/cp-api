@@ -51,6 +51,7 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('manager/term/start','ManagerController@termStart');
     $api->post('manager/term/stop','ManagerController@termStop');
     $api->post('manager/term/info','ManagerController@termInfo');
+    $api->post('manager/term/date/info','ManagerController@termDateInfo');
     $api->post('term/status','ManagerController@termStatus');
 
     /*
