@@ -95,10 +95,9 @@ class TaskmanagerController extends Controller
     public function publish(Request $request)
     {
       $openid = Session::getOpenid($request->input('session_key'));
-      $id = $request->input('id');
       $role = Admin::getRole($openid);
       if ($role == 'ADMIN' || $role == 'HOUSE_OWNER') {
-        Taskterm::publishTask($id);  // 发布任务，给每个人添加任务id
+        Taskterm::publishTask(3);  // 发布任务，给每个人添加任务id
         $res = returnCode(true,'任务发布成功','success');
       } else {
         $res = returnCode(false,'权限不够','fail');

@@ -16,7 +16,7 @@ class MatchController extends Controller
       $openid = Session::getOpenid($request->input('session_key'));
       $match = Matchterm::where(['openid'=>$openid])->first();
       if (empty($match)) {
-        $res = returnCode(false,'匹配未成功','匹配未成功');
+        $res = returnCode(true,'查询成功','匹配未成功');
       } else {
         $wxuser = Wxuser::where(['openid'=>$openid])->firstOrFail();
         $match_openid = $match->first()->match_openid;
@@ -30,6 +30,7 @@ class MatchController extends Controller
         $info->age = calcAge($info->birthday);
         $res = returnCode(true,'查询成功',$info);
       }
+
       return response()->json($res);
     }
 
