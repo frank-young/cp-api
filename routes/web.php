@@ -19,7 +19,6 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('login','WxuserController@login');
     $api->post('getuserinfo','WxuserController@getuserinfo');
     $api->post('getopenid','WxuserController@getopenid');
-
     /*
      * 用户信息填写
      */
@@ -28,7 +27,6 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('info/show','InfoController@show');
     $api->post('info/show/again','InfoController@againShow');
     $api->post('info/share','InfoController@share');
-
     /*
      * 匹配算法，需要加上超级权限
      */
@@ -37,14 +35,12 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->get('evaluation/match/city','EvaluationController@matchCity');
     $api->get('evaluation/match','EvaluationController@match');
     $api->get('evaluation/update','EvaluationController@updateNum');
-
     /*
      * 用户匹配查询
      */
     $api->post('match','MatchController@index');
     $api->post('match/attendance','MatchController@attendance');
     $api->post('match/attendance/status','MatchController@attendanceStatus');
-
     /*
      * 匹配管理
      */
@@ -53,7 +49,6 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('manager/term/info','ManagerController@termInfo');
     $api->post('manager/term/date/info','ManagerController@termDateInfo');
     $api->post('term/status','ManagerController@termStatus');
-
     /*
      * 任务管理
      */
@@ -62,13 +57,11 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
     $api->post('taskmanager/index','TaskmanagerController@index');
     $api->post('taskmanager/show','TaskmanagerController@show');
     $api->post('taskmanager/update','TaskmanagerController@update');
-
     /*
      * 管理员，房主添加，超级管理员权限
      */
     $api->post('admin/create','AdminController@create');
     $api->post('admin/role','AdminController@role');
-
     /*
      * 用户任务获取，以及用户完成任务
      */
@@ -78,14 +71,12 @@ $api->version('v1',['namespace' => 'App\Http\Controllers\Miniapp'], function ($a
 
     $api->post('taskahead/create','TaskaheadController@create');
     $api->post('taskahead/show','TaskaheadController@show');
-
     /*
      * 话题部分
      */
     $api->post('topic/create','TopicController@create');
     $api->post('topic','TopicController@index');
     $api->post('topic/show','TopicController@show');
-
     /*
      * 话题评论部分
      */
